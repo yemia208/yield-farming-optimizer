@@ -284,7 +284,7 @@
     (asserts! (get is-active pool-info) ERR-POOL-PAUSED)
     
     ;; Update rewards before claiming
-    (unwrap! (update-user-rewards tx-sender pool-id) ERR-UNAUTHORIZED)
+    (update-user-rewards tx-sender pool-id)
     
     (let (
       (updated-stake (unwrap! (map-get? user-stakes { user: tx-sender, pool-id: pool-id }) ERR-NOT-STAKED))
@@ -339,7 +339,7 @@
     (asserts! (can-unstake tx-sender pool-id) ERR-UNAUTHORIZED)
     
     ;; Claim any pending rewards first
-    (unwrap-panic (update-user-rewards tx-sender pool-id))
+    (update-user-rewards tx-sender pool-id)
     
     ;; Remove stake record
     (map-delete user-stakes { user: tx-sender, pool-id: pool-id })

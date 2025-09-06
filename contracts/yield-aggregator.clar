@@ -423,7 +423,7 @@
     )
     
     ;; Update performance metrics
-    (unwrap-panic (update-pool-performance pool-id net-deposit))
+    (update-pool-performance pool-id net-deposit)
     
     ;; Update global fees
     (var-set total-fees-collected (+ (var-get total-fees-collected) management-fee))
